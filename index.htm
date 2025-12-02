@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Monalisa Motu 💖</title>
+  <style>
+    :root{
+      --pink:#ff66a3;
+      --deep:#ff1493;
+      --bg:#ffe6f2;
+    }
+    html,body{height:100%;}
+    body {
+      font-family: 'MV Boli', cursive, sans-serif;
+      background-color: var(--bg);
+      color: #d63384;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+    .container{position:relative; min-height:100vh;}
+    h1 { font-size: clamp(2rem, 4vw, 4em); color: var(--deep); text-shadow: 2px 2px 8px white; margin:0.2em 0; }
+    p { font-size: clamp(1rem, 2.5vw, 2em); color: #c2185b; margin:0.5em 0; }
+    .page { display:none; padding: 40px 20px; height:100vh; box-sizing:border-box; }
+    .active { display:block; }
+    button { background-color: var(--pink); color: white; padding: 14px 26px; border: none; border-radius: 10px; cursor: pointer; font-size: 1.05em; margin-top: 20px; font-family: inherit; }
+    button:hover { background-color: #ff3385; }
+    #popup { display:none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(255,192,203,0.96); text-align:center; padding-top:180px; font-size:2.2em; color:#e60073; z-index:50; }
+    .photo-container{margin-top:24px;}
+    .photo-container img{ width: min(320px, 40vw); max-height:80vh; object-fit:cover; border-radius:18px; box-shadow:0 8px 30px rgba(255,153,204,0.35); }
+    .floating-hearts{ position: fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
+    .heart{ position:absolute; bottom:-10vh; font-size:1.8em; animation: floatUp linear forwards; }
+    @keyframes floatUp { 0%{transform: translateY(0) scale(1); opacity:1} 100%{transform: translateY(-120vh) scale(1.3); opacity:0} }
+
+    /* Balloons */
+    .balloon{ position: absolute; bottom:-150px; width:80px; height:100px; border-radius:50% 50% 50% 50%; opacity:0.95; display:flex; align-items:center; justify-content:center; font-size:40px; }
+    .balloon::after{ content:""; position:absolute; width:2px; height:90px; background:rgba(0,0,0,0.15); bottom:-90px; left:50%; transform:translateX(-50%); }
+    @keyframes rise { 0%{transform: translateY(0) scale(1);} 100%{transform: translateY(-140vh) rotate(-20deg) scale(1.05);} }
+    @keyframes pop { to { transform: scale(0.2); opacity:0; } }
+
+    #confettiCanvas{ position: fixed; inset:0; pointer-events:none; z-index:40; }
+
+    @media (max-width:600px){ p{font-size:1.05rem;} button{padding:12px 18px;} }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <audio id="bgMusic" loop>
+      <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_b1fa9ed50f.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- PAGE 1 -->
+    <div class="page active" id="page1">
+      <h1>🎂 Happy Birthday My Love 💖</h1>
+      <p>To my dearest <strong>Monalisa Motu</strong>,<br/>You make my world brighter and my heart fuller every single day.💕</p>
+      <p>I HAVE A SHAYRI MY PAGELIII</p>
+      <p>1.Ki arzz kia hai....</p>
+      <p>Aankho ki chamak palko ki shan ho tum,</p>
+      <p>Chehre hi hasi lamho ki muskan ho tum,</p>
+      <p>Dhadakta hai dil bas tumhari arzuu mai,</p>
+      <p>Fir kaise na kahu, <br> Meri jaan ho tum💖💖</p>
+      <p>𝓗𝓪𝓹𝓹𝔂 𝓑𝓲𝓻𝓽𝓱𝓭𝓪𝔂 𝓐𝓰𝓪𝓲𝓷...</p>
+      <button onclick="startMusicAndNext(2)">Start 💞</button>
+    </div>
+
+    <!-- PAGE 2 -->
+    <div class="page" id="page2">
+      <h1>🌹 A Pop-Up of Love 🌹</h1>
+      <p>Close your eyes... imagine my hug... now click below 💞</p>
+      <button onclick="showPopup()">💌 Open My Heart 💌</button>
+      <button onclick="nextPage(3)">Next ➤</button>
+    </div>
+
+    <!-- PAGE 3 -->
+    <div class="page" id="page3">
+      <h1>💘 So Many Hearts for You 💘</h1>
+      <p>
+        Every heart you see floating is a piece of my love for you,<br/>
+        2nd shayerii for my Kuni Boss<br><strong>
+        2. Pyar bhi tu ,<br>
+           Dost bhi tu ,<br>
+           Ek bhi tu,<br>
+           Hazar bhi tu,<br>
+           Gussa bhi tu,<br>
+           Mafii bhi tu,<br>
+           Mere iss zindegi ke safar<br>
+           mein kafi hai tuu.
+        </strong> ❤️
+      </p>
+      <p>I love you endlessly, deeply, forever </p>
+      <div class="photo-container">
+        <img src="https://i.postimg.cc/sxxy11gq/Capture-by-hara-20251113-124746-Gallery.jpg" alt="Monalisa Motu">
+      </div>
+      <button onclick="nextPage(4)">Next ➤</button>
+    </div>
+
+    <!-- PAGE 4 -->
+    <div class="page" id="page4">
+      <h1>💫 Forever & Always 💫</h1>
+      <p>If kisses were stars, I’d give you the sky 🌟<br/>If hugs were raindrops, I’d give you the ocean 🌧<br/>If love were forever... ours already is ♾️💑</p>
+      <p style="font-size:2.2em; color:var(--deep);">❤️ I LOVE YOU, kuni Boss (pageliii)❤️</p>
+      <button onclick="nextPage(5)">Next ➤</button>
+    </div>
+
+    <!-- PAGE 5 -->
+    <div class="page" id="page5">
+      <h1>🎈💖 HAPPY BIRTHDAY AGAIN 💖🎈</h1>
+      <p>You are my everything, my heart, my dream come true. 💞</p>
+      <p>Forever yours... I LOVE YOU </p>
+      <p>This is the another shayeri for U</p>
+      <p>3.Teri muhabbat mai bhi na jaane kitnee<br>"Fasaane" hain!!!</p>
+      <p>Bar Bar nehiii tune mujhe, lekin miss<br> Ham phir bhi tere "Diwane" hain!!!</p>
+      <button onclick="nextPage(6)">Next ➤</button>
+    </div>
+
+    <!-- PAGE 6 -->
+    <div class="page" id="page6">
+      <h1>💞 Words That Whisper My Love 💞</h1>
+      <p style="font-size:1.25rem; line-height:1.6; max-width:900px; margin:0 auto;">
+        My sweetheart, my darling, my angel, my muse 💘<br/>
+        My heartbeat, my sunshine, my cuddlebug, my dream come true 💓<br/><br/>
+        You are my forever, my always, my destiny, my soulmate 💞<br/>
+        My treasure, my joy, my miracle, my one and only 💋<br/><br/>
+        I adore you, I cherish you, I crave you, I need you 💖<br/>
+        I miss you, I want you, I feel you, I breathe you 💗<br/><br/>
+        I love you madly, deeply, endlessly, eternally ♾️<br/>
+        You are my Monalisa Motu... and I am yours forever 💑
+      </p>
+      <button onclick="nextPage(7)">Next ➤</button>
+    </div>
+
+    <!-- PAGE 7 (VIDEO PAGE) -->
+    <div class="page" id="page7">
+      <h1>🎥 A Special Video for You My Love 💖</h1>
+      <p>My pageliii, this video is only for you 😘</p>
+
+      <!-- ✅ FIXED VIDEO EMBED -->
+    <iframe width="100%" height="315" 
+    src="https://www.youtube.com/embed/PoaqRbwIBgw" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen>
+</iframe>
+
+
+
+      <br><br>
+      <button onclick="celebrate()">🎉 Celebrate & Restart</button>
+    </div>
+
+    <!-- POPUP -->
+    <div id="popup">
+      💕💕💕<br/>
+      💖 I LOVE YOU MONALISA MOTU 💖<br/>
+      💕💕💕<br/>
+      <button onclick="closePopup()">Close 💌</button>
+    </div>
+
+    <div class="floating-hearts" id="floatingHearts"></div>
+    <div id="balloonsWrap"></div>
+    <canvas id="confettiCanvas"></canvas>
+
+  </div>
+
+<script>
+/* SAME JAVASCRIPT – NO CHANGES */
+let currentPage = 1;
+let musicStarted = false;
+const music = document.getElementById('bgMusic');
+
+function startMusicAndNext(n){
+  if(!musicStarted){
+    music.play().catch(()=>{});
+    musicStarted = true;
+  }
+  nextPage(n);
+}
+
+function nextPage(n){
+  document.getElementById('page' + currentPage).classList.remove('active');
+  document.getElementById('page' + n).classList.add('active');
+  currentPage = n;
+}
+
+function showPopup(){ document.getElementById('popup').style.display = 'block'; }
+function closePopup(){ document.getElementById('popup').style.display = 'none'; }
+function restart(){ nextPage(1); }
+
+/* Hearts */
+const floatingHearts = document.getElementById('floatingHearts');
+const hearts = ['💖','💞','💘','❤️','💓','💗','💕','💝','💟'];
+function createHeart(){
+  const heart = document.createElement('div');
+  heart.className = 'heart';
+  heart.textContent = hearts[Math.floor(Math.random()*hearts.length)];
+  heart.style.left = Math.random()*100 + 'vw';
+  const dur = 4 + Math.random()*3;
+  heart.style.animationDuration = dur + 's';
+  heart.style.fontSize = (1.2 + Math.random()*1.6) + 'em';
+  floatingHearts.appendChild(heart);
+  setTimeout(()=> heart.remove(), (dur+0.3)*1000);
+}
+setInterval(createHeart, 450);
+
+/* Balloons */
+const balloonsWrap = document.getElementById('balloonsWrap');
+function spawnBalloon(xPercent, color){
+  const b = document.createElement('div');
+  b.className = 'balloon';
+  b.style.left = xPercent + '%';
+  b.style.background = color;
+  b.style.animation = 'rise ' + (6 + Math.random()*4) + 's ease-in forwards';
+  b.innerHTML = '🎈';
+  balloonsWrap.appendChild(b);
+  setTimeout(()=> b.remove(), 12000);
+}
+setInterval(()=>{
+  const x = Math.random()*90;
+  const colors = ['#ff7ab6','#ffd46a','#9be7ff','#b19cff','#ff9fd1'];
+  spawnBalloon(x, colors[Math.floor(Math.random()*colors.length)]);
+}, 1200);
+
+/* Confetti */
+const confettiCanvas = document.getElementById('confettiCanvas');
+const ctx = confettiCanvas.getContext('2d');
+function resizeCanvas(){ confettiCanvas.width = window.innerWidth; confettiCanvas.height = window.innerHeight; }
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+class Confetto {
+  constructor(){
+    this.x = Math.random()*confettiCanvas.width;
+    this.y = -10;
+    this.w = 6 + Math.random()*8;
+    this.h = 10 + Math.random()*14;
+    this.color = ['#ffccf2','#ff9fcf','#ffd46a','#9be7ff','#b19cff'][Math.floor(Math.random()*5)];
+    this.vx = (Math.random()-0.5)*1.5;
+    this.vy = 2 + Math.random()*3;
+    this.rot = Math.random()*360;
+    this.rotz = (Math.random()-0.5)*10;
+  }
+  update(){ this.x += this.vx; this.y += this.vy; this.vy += 0.02; this.rot += this.rotz; }
+  draw(){
+    ctx.save();
+    ctx.translate(this.x, this.y);
+    ctx.rotate(this.rot * Math.PI/180);
+    ctx.fillStyle = this.color;
+    ctx.fillRect(-this.w/2, -this.h/2, this.w, this.h);
+    ctx.restore();
+  }
+}
+
+let confetti = [];
+function launchConfetti(count=80){
+  for(let i=0;i<count;i++) confetti.push(new Confetto());
+  (function anim(){
+    ctx.clearRect(0,0,confettiCanvas.width, confettiCanvas.height);
+    for(let i=confetti.length-1;i>=0;i--){
+      confetti[i].update();
+      confetti[i].draw();
+      if(confetti[i].y > confettiCanvas.height + 50) confetti.splice(i,1);
+    }
+    if(confetti.length>0) requestAnimationFrame(anim);
+  })();
+}
+
+function celebrate(){
+  launchConfetti(120);
+  for(let i=0;i<8;i++){
+    setTimeout(()=> spawnBalloon(5 + Math.random()*90, ['#ff7ab6','#ffd46a','#9be7ff','#b19cff','#ff9fd1'][Math.floor(Math.random()*5)]), i*150);
+  }
+  setTimeout(()=> restart(), 8000);
+}
+</script>
+
+</body>
+</html>
